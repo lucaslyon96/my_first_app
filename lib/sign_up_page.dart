@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:list_view_card/auth_credentials.dart';
 
 class SingUpPage extends StatefulWidget {
+  final ValueChanged<SignUpCredentials> didProviderCredentials;
   final VoidCallback shouldShowLogin;
-  SingUpPage({Key key, this.shouldShowLogin}): super(key: key);
+  SingUpPage({Key key, this.didProviderCredentials, this.shouldShowLogin}): super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SignUpPageState();
@@ -78,5 +80,12 @@ class _SignUpPageState extends State<SingUpPage> {
     print("Username: $username");
     print("Email: $email");
     print("Password: $password");
+
+    final credentials = SignUpCredentials(
+      username: username,
+      email: email,
+      password: password
+    );
+    widget.didProviderCredentials(credentials);
   }
 }
