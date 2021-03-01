@@ -33,10 +33,12 @@ class _MyAppState extends State<MyApp>{
              pages: [
                if (snapshot.data.authFlowStatus == AuthFlowStatus.login)
                   MaterialPage(child: LoginPage(
+                    didProvideCredentials: _authService.loginWithCredentials,
                     shouldShowSignUp: () => _authService.showSignUp(),
                   )),
                if (snapshot.data.authFlowStatus == AuthFlowStatus.signUp)
                   MaterialPage(child: SingUpPage(
+                    didProviderCredentials: _authService.signUpWithCredentials,
                     shouldShowLogin: () => _authService.showLogin(),
                   ))
              ],
